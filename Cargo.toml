@@ -1,0 +1,14 @@
+[package]
+name = "whetstone"
+version = "0.1.0"
+edition = "2021"
+authors = ["Pavan Nallamothu"]
+description = "A readable optimizing pass pipeline for a small IR"
+license = "MIT"
+
+[[bin]]
+name = "whetstone"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }

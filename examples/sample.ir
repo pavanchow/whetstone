@@ -1,0 +1,9 @@
+# a program that folds, propagates, simplifies, and drops dead code
+t1 = 2 + 3
+t2 = t1 * 4
+t3 = t2 + 0
+t4 = x * 1
+t5 = x * 0
+t6 = t3 + 1
+print t4
+print t6
