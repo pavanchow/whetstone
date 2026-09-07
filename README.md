@@ -1,3 +1,5 @@
+<img src="docs/logo.svg" alt="Whetstone logo" width="96">
+
 # Whetstone
 
 **A readable compiler optimizer in Rust, where you watch every pass transform the code.**

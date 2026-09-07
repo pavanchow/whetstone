@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Whetstone logo">
+  <!-- the whetstone -->
+  <g transform="rotate(-9 64 84)">
+    <rect x="22" y="76" width="84" height="20" rx="8" fill="#b45309"/>
+    <rect x="22" y="76" width="84" height="8" rx="4" fill="#e0a15c"/>
+  </g>
+  <!-- the blade being honed -->
+  <g transform="rotate(-9 64 58)">
+    <path d="M30 62 L96 44 L104 48 L104 56 L34 70 Z" fill="#d9dde2" stroke="#6d6660" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M30 62 L96 44 L104 48 L104 56 L34 70 Z" fill="none"/>
+    <rect x="24" y="58" width="12" height="14" rx="3" fill="#7a5230"/>
+  </g>
+  <!-- spark where edge meets stone -->
+  <g fill="#ffb454">
+    <path d="M86 66 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3 z"/>
+  </g>
+</svg>

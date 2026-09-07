@@ -7,6 +7,7 @@
 <meta name="description" content="Whetstone is a compiler optimizer in Rust with a readable pass pipeline: constant folding, constant propagation, algebraic simplification, and dead code elimination, each one visible before and after. By Pavan Nallamothu (pavanchow).">
 <meta name="author" content="Pavan Nallamothu (pavanchow)">
 <link rel="canonical" href="https://pavanchow.github.io/whetstone/">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Whetstone: a compiler optimizer in Rust you can watch pass by pass">
@@ -138,6 +139,7 @@
   </div></nav>
 
   <div class="hero">
+    <img src="logo.svg" alt="Whetstone logo" width="72" height="72">
     <p class="eyebrow">Rust · no LLVM · no black box</p>
     <h1>Watch the optimizer<br>think, one pass at a time.</h1>
     <p class="sub">Whetstone is a compiler optimizer in Rust built around a small, readable intermediate representation. Constant folding, constant propagation, algebraic simplification, and dead code elimination each transform the IR in the open, before and after, round by round to a fixed point.</p>
@@ -148,6 +150,12 @@
   </div>
 
   <div id="try" class="stage">
+    <details style="margin:0 0 22px;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:0 18px;">
+      <summary style="cursor:pointer;padding:15px 0;font-weight:650;color:var(--ink);">How to use this playground</summary>
+      <div style="padding:0 0 16px;color:var(--muted);font-size:15px;line-height:1.6;">
+        Paste a small three-address IR into the box, or pick a sample chip, then press <em>Optimize</em>. Whetstone runs its four passes (constant folding, constant propagation, algebraic simplification, dead code elimination) over and over to a fixed point, and shows the <em>Original</em> next to the <em>Optimized</em> program. Below them, every fold, propagation, simplification, and removal is listed in pipeline order, so you can see exactly what each pass did and how one pass exposed work for the next. One instruction per line: <code>dst = value op value</code> or <code>print reg</code>. This is a direct port of the Rust parser and passes.
+      </div>
+    </details>
     <div class="card demo">
       <div class="bar">
         <strong style="font-size:14.5px">Paste IR, or use a sample</strong>
