@@ -6,6 +6,7 @@
 <title>Whetstone: a compiler optimizer in Rust you can watch pass by pass</title>
 <meta name="description" content="Whetstone is a compiler optimizer in Rust with a readable pass pipeline: constant folding, constant propagation, algebraic simplification, and dead code elimination, each one visible before and after. By Pavan Nallamothu (pavanchow).">
 <meta name="author" content="Pavan Nallamothu (pavanchow)">
+<meta name="keywords" content="compiler optimizer, optimizing pass pipeline, constant folding, constant propagation, algebraic simplification, dead code elimination, intermediate representation, three-address code, Rust, from scratch, Pavan Nallamothu, pavanchow">
 <link rel="canonical" href="https://pavanchow.github.io/whetstone/">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
 
@@ -24,6 +25,7 @@
   "description": "Whetstone is a compiler optimizer in Rust with a readable pass pipeline: constant folding, constant propagation, algebraic simplification, and dead code elimination.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Cross-platform",
+  "softwareVersion": "0.1.0",
   "author": { "@type": "Person", "name": "Pavan Nallamothu" },
   "url": "https://pavanchow.github.io/whetstone/",
   "codeRepository": "https://github.com/pavanchow/whetstone",
@@ -52,6 +54,7 @@
   nav .brand .gem{width:16px;height:16px;transform:rotate(45deg);border-radius:3px;background:linear-gradient(135deg,#e0a15c,#b45309)}
   nav .links{display:flex;gap:26px;align-items:center}
   nav .links a{color:var(--ink);font-size:14.5px}
+  nav .v{color:var(--faint);font-family:var(--mono);font-size:12px}
   @media(max-width:640px){nav .links a:not(.gh){display:none}}
 
   .hero{padding:70px 0 30px;text-align:center}
@@ -114,6 +117,14 @@
 
   pre{background:#15130f;color:#f1ece4;border-radius:14px;padding:20px 22px;font-family:var(--mono);font-size:13.5px;overflow-x:auto;max-width:640px;margin:40px auto 0}
   pre .c{color:#8a8478}
+  .term{max-width:660px;margin:40px auto 0;background:#15130f;border:1px solid #2c2620;border-radius:14px;overflow:hidden}
+  .term .tbar{display:flex;gap:7px;padding:12px 16px;border-bottom:1px solid #241f19}
+  .term .tbar i{width:11px;height:11px;border-radius:50%;background:#3a332a}
+  .term pre{background:transparent;margin:0;border-radius:0;max-width:none;color:#f1ece4;padding:18px 20px;font-size:12.5px;line-height:1.6}
+  .term .p{color:#e0a15c}
+  .term .h{color:#c99a5b}
+  .term .a{color:#e0a15c}
+  .term .del{color:#8a8478}
 
   .rows{max-width:820px;margin:44px auto 0}
   .rows .r{display:grid;grid-template-columns:minmax(150px,1fr) 2fr;gap:14px 38px;padding:22px 0;border-top:1px solid var(--line)}
@@ -133,8 +144,9 @@
   <nav><div class="row">
     <div class="brand"><img src="logo.svg" class="brandlogo" alt="" width="22" height="22">Whetstone</div>
     <div class="links">
-      <a href="#try">Demo</a><a href="#how">How it works</a><a href="#compare">Passes</a>
+      <a href="#try">Demo</a><a href="#how">How it works</a><a href="#compare">Passes</a><a href="#usage">Usage</a>
       <a class="gh" href="https://github.com/pavanchow/whetstone">GitHub</a>
+      <span class="v">v0.1.0</span>
     </div>
   </div></nav>
 
@@ -203,6 +215,41 @@
     </div>
     <pre><span class="c"># before/after of every pass, round by round</span>
 whetstone opt prog.ir --show-passes</pre>
+    <div class="term">
+      <div class="tbar"><i></i><i></i><i></i></div>
+<pre><span class="p">$</span> whetstone opt prog.ir
+t4 = x
+print t4
+print 21
+
+<span class="h">changes:</span>
+  constant folding: `t1 = 2 + 3` <span class="a">-&gt;</span> `t1 = 5`
+  constant propagation: `t2 = t1 * 4` <span class="a">-&gt;</span> `t2 = 5 * 4`
+  algebraic simplification: `t3 = t2 + 0` <span class="a">-&gt;</span> `t3 = t2`
+  algebraic simplification: `t4 = x * 1` <span class="a">-&gt;</span> `t4 = x`
+  algebraic simplification: `t5 = x * 0` <span class="a">-&gt;</span> `t5 = 0`
+  <span class="del">dead code elimination: removed `t1 = 5` (result never used)</span>
+  <span class="del">dead code elimination: removed `t5 = 0` (result never used)</span>
+  constant folding: `t2 = 5 * 4` <span class="a">-&gt;</span> `t2 = 20`
+  constant propagation: `t3 = t2` <span class="a">-&gt;</span> `t3 = 20`
+  constant propagation: `t6 = t3 + 1` <span class="a">-&gt;</span> `t6 = 20 + 1`
+  <span class="del">dead code elimination: removed `t2 = 20` (result never used)</span>
+  <span class="del">dead code elimination: removed `t3 = 20` (result never used)</span>
+  constant folding: `t6 = 20 + 1` <span class="a">-&gt;</span> `t6 = 21`
+  constant propagation: `print t6` <span class="a">-&gt;</span> `print 21`
+  <span class="del">dead code elimination: removed `t6 = 21` (result never used)</span></pre>
+    </div>
+  </section>
+
+  <section id="usage">
+    <h2>Read it, run it, test it.</h2>
+    <p class="lead">Text in, text out. The IR is one instruction per line, and every surface is the same parser and passes.</p>
+    <div class="rows">
+      <div class="r"><b>The IR</b><p>One instruction per line: <code>dst = value</code>, <code>dst = value op value</code>, or <code>print value</code>. Operators are <code>+ - * /</code> and the comparisons. Blank lines and <code>#</code> comments are ignored, and bad input is a typed parse error with a line number, never a panic.</p></div>
+      <div class="r"><b>Optimize</b><p><code>whetstone opt prog.ir</code> prints the optimized program, then lists every fold, propagation, simplification, and removal in pipeline order on stderr.</p></div>
+      <div class="r"><b>Show every pass</b><p><code>whetstone opt prog.ir --show-passes</code> prints the before and after of each pass that changed something, round by round, ending at the fixed point.</p></div>
+      <div class="r"><b>Build and test</b><p><code>cargo build</code> and <code>cargo test</code>. The browser demo above is a direct port of the same Rust parser and passes.</p></div>
+    </div>
   </section>
 
   <noscript>
