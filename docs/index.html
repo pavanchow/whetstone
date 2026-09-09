@@ -3,33 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Whetstone: a compiler optimizer in Rust you can watch pass by pass</title>
-<meta name="description" content="Whetstone is a compiler optimizer in Rust with a readable pass pipeline: constant folding, constant propagation, algebraic simplification, and dead code elimination, each one visible before and after. By Pavan Nallamothu (pavanchow).">
-<meta name="author" content="Pavan Nallamothu (pavanchow)">
-<meta name="keywords" content="compiler optimizer, optimizing pass pipeline, constant folding, constant propagation, algebraic simplification, dead code elimination, intermediate representation, three-address code, Rust, from scratch, Pavan Nallamothu, pavanchow">
+<title>Whetstone: compiler optimizer in Rust | Pavan Nallamothu</title>
+<meta name="description" content="Whetstone is a compiler optimizer in Rust: a readable pass pipeline of constant folding, propagation, and dead code elimination, built by Pavan Nallamothu.">
+<meta name="keywords" content="whetstone, whetstone rust, compiler optimizer, compiler optimizer in rust, optimizing compiler passes, constant folding, constant propagation, algebraic simplification, dead code elimination, intermediate representation, three-address code, IR optimization, from scratch compiler, learn compiler optimization, Pavan Nallamothu, pavanchow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Pavan Nallamothu">
+<link rel="author" href="https://github.com/pavanchow">
 <link rel="canonical" href="https://pavanchow.github.io/whetstone/">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Whetstone: a compiler optimizer in Rust you can watch pass by pass">
+<meta property="og:site_name" content="Pavan Nallamothu">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Whetstone: compiler optimizer in Rust | Pavan Nallamothu">
 <meta property="og:description" content="A readable optimizing pass pipeline over a small IR: constant folding, constant propagation, algebraic simplification, and dead code elimination, each one visible before and after.">
 <meta property="og:url" content="https://pavanchow.github.io/whetstone/">
-<meta property="og:site_name" content="Whetstone">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://pavanchow.github.io/whetstone/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Whetstone by Pavan Nallamothu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Whetstone: compiler optimizer in Rust | Pavan Nallamothu">
+<meta name="twitter:description" content="A readable optimizing pass pipeline over a small IR: constant folding, constant propagation, algebraic simplification, and dead code elimination, each one visible before and after.">
+<meta name="twitter:image" content="https://pavanchow.github.io/whetstone/og-image.png">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Whetstone",
-  "description": "Whetstone is a compiler optimizer in Rust with a readable pass pipeline: constant folding, constant propagation, algebraic simplification, and dead code elimination.",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Cross-platform",
-  "softwareVersion": "0.1.0",
-  "author": { "@type": "Person", "name": "Pavan Nallamothu" },
-  "url": "https://pavanchow.github.io/whetstone/",
-  "codeRepository": "https://github.com/pavanchow/whetstone",
-  "programmingLanguage": "Rust"
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://pavanchow.github.io/whetstone/#software",
+      "name": "Whetstone",
+      "description": "Whetstone is a compiler optimizer in Rust with a readable pass pipeline over a small three-address IR: constant folding, constant propagation, algebraic simplification, and dead code elimination, run to a fixed point.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Linux, macOS, Windows",
+      "softwareVersion": "0.1.0",
+      "url": "https://pavanchow.github.io/whetstone/",
+      "image": "https://pavanchow.github.io/whetstone/og-image.png",
+      "codeRepository": "https://github.com/pavanchow/whetstone",
+      "programmingLanguage": "Rust",
+      "license": "https://opensource.org/licenses/MIT",
+      "datePublished": "2026-08-21",
+      "keywords": "compiler optimizer, constant folding, constant propagation, algebraic simplification, dead code elimination, intermediate representation, three-address code, Rust",
+      "author": { "@id": "https://github.com/pavanchow#person" },
+      "publisher": { "@id": "https://github.com/pavanchow#person" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Constant folding over literal binary operations",
+        "Constant propagation across a forward scan",
+        "Algebraic simplification of identities like x * 1 and x + 0",
+        "Dead code elimination via backward liveness",
+        "Passes run to a fixed point with a hard iteration cap",
+        "Before and after of every pass with --show-passes"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://github.com/pavanchow#person",
+      "name": "Pavan Nallamothu",
+      "alternateName": "pavanchow",
+      "url": "https://github.com/pavanchow",
+      "jobTitle": "Software Engineer and Security Researcher",
+      "knowsAbout": ["Rust", "compilers", "compiler optimization", "intermediate representation", "static analysis", "systems programming"],
+      "sameAs": ["https://github.com/pavanchow", "https://hackerone.com/pavanchow"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://pavanchow.github.io/whetstone/#website",
+      "name": "Whetstone by Pavan Nallamothu",
+      "url": "https://pavanchow.github.io/whetstone/",
+      "author": { "@id": "https://github.com/pavanchow#person" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://pavanchow.github.io/whetstone/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Pavan Nallamothu", "item": "https://github.com/pavanchow" },
+        { "@type": "ListItem", "position": 2, "name": "Whetstone", "item": "https://pavanchow.github.io/whetstone/" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://pavanchow.github.io/whetstone/#webpage",
+      "url": "https://pavanchow.github.io/whetstone/",
+      "name": "Whetstone: compiler optimizer in Rust | Pavan Nallamothu",
+      "isPartOf": { "@id": "https://pavanchow.github.io/whetstone/#website" },
+      "about": { "@id": "https://pavanchow.github.io/whetstone/#software" },
+      "author": { "@id": "https://github.com/pavanchow#person" },
+      "inLanguage": "en"
+    }
+  ]
 }
 </script>
 
@@ -135,10 +199,6 @@
   footer{padding:60px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted)}
   footer .name{color:var(--ink);font-weight:600}
 </style>
-<link rel="author" href="https://github.com/pavanchow">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Pavan Nallamothu","alternateName":"pavanchow","url":"https://github.com/pavanchow","sameAs":["https://github.com/pavanchow","https://hackerone.com/pavanchow"]}
-</script>
 </head>
 <body>
   <nav><div class="row">
@@ -262,6 +322,18 @@ print 21
     <p>A compiler optimizer you can read end to end.</p>
     <p style="margin-top:12px"><a href="https://github.com/pavanchow/whetstone">github.com/pavanchow/whetstone</a></p>
     <p style="margin-top:12px">By <span class="name">Pavan Nallamothu</span>.</p>
+    <div style="max-width:820px;margin:40px auto 0;padding-top:28px;border-top:1px solid var(--line);text-align:left">
+      <p style="text-align:center;font-weight:600;color:var(--ink);margin-bottom:16px">More open-source tools by Pavan Nallamothu</p>
+      <p style="font-size:14.5px;line-height:1.9">
+        <a href="https://pavanchow.github.io/alchemist/">Alchemist, a compiler that lexes, parses, and lowers to bytecode</a><br>
+        <a href="https://pavanchow.github.io/anvil/">Anvil, a compiler backend with graph-coloring register allocation</a><br>
+        <a href="https://pavanchow.github.io/mirage/">Mirage, a bytecode virtual machine with its own instruction set</a><br>
+        <a href="https://pavanchow.github.io/esperanto/">Esperanto, a statically-typed language with type inference in Rust</a><br>
+        <a href="https://pavanchow.github.io/kindling/">Kindling, a dynamically typed language with a bytecode compiler</a><br>
+        <a href="https://pavanchow.github.io/lint-owl/">Lint-Owl, a static analyzer that traces source to dangerous sink</a><br>
+        <a href="https://github.com/pavanchow">All projects on github.com/pavanchow</a>
+      </p>
+    </div>
   </footer>
 
 <script>
