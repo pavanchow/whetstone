@@ -198,6 +198,18 @@
 
   footer{padding:60px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted)}
   footer .name{color:var(--ink);font-weight:600}
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#f2ede6;--muted:#b0a89f;--faint:#8a8078;
+      --line:#2c2723;--panel:#1a1613;--panel2:#1a1613;
+    }
+    body{background:#120f0d}
+    nav{background:rgba(18,15,13,.82);border-bottom-color:var(--line)}
+    .btn.p{color:#120f0d}
+    .go{color:#120f0d}
+    input[type="text"],textarea{background:#1a1613}
+  }
 </style>
 </head>
 <body>
