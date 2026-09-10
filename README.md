@@ -6,6 +6,8 @@ Whetstone is a compiler optimizer written from scratch in Rust with a readable p
 
 **[Live demo](https://pavanchow.github.io/whetstone/)** · MIT licensed · written in Rust
 
+Built from scratch by [Pavan Nallamothu](https://pavanchow.github.io/) ([LinkedIn](https://www.linkedin.com/in/pavanchow/), [GitHub](https://github.com/pavanchow)).
+
 Most optimizers are a black box bolted inside a bigger compiler. Whetstone is not attached to anything. It is a small intermediate representation and a pass pipeline you can read start to finish, run on your own input, and watch rewrite itself one pass at a time.
 
 ## What it is
